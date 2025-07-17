@@ -10,9 +10,9 @@ spring:
     name: '@project.artifactId@'
     version: '@project.version@'
   datasource:
-    url: jdbc:postgresql://localhost:5434/atelier
-    username: admin
-    password: password
+    url: jdbc:postgresql://${BBDD_HOST}:${BBDD_PORT}/${BBDD_NAME}
+    username: ${BBDD_USER}
+    password: ${BBDD_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -27,7 +27,14 @@ spring:
 application:
   security:
     auth:
-      username: admin
-      password: admin123
+      username: ${AUTH_USERNAME}
+      password: ${AUTH_PASSWORD}
     jwt:
-      secretKey: mJt1fHl2U3VuSldOSHhCZ1R3U1BwOHJHRGpLdlA2SHE9PSQ2aXQ5QVpWUURwSUhp
+      secretKey: ${SECRET_KEY}
+
+# ENVIRONMENT VARIABLES
+BBDD_HOST: localhost
+BBDD_PORT: 5434
+BBDD_NAME: atelier
+BBDD_USER: admin
+BBDD_PASSWORD: password
