@@ -1,0 +1,13 @@
+# Utiliza una imagen base de Java para el microservicio
+FROM docker.io/openjdk:17-jdk-slim
+
+# Copia el archivo JAR del microservicio a la imagen
+COPY target/*.jar /app/atelier-workshops.jar
+
+# Establece el directorio de trabajo para el contenedor
+WORKDIR /app
+
+EXPOSE 8080
+
+# Comando para ejecutar el microservicio
+CMD ["java", "-Xmx384m", "-XX:MaxMetaspaceSize=256m", "-jar", "atelier-workshops.jar"]

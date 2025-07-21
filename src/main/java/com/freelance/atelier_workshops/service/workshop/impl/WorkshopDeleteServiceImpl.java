@@ -16,7 +16,7 @@ public class WorkshopDeleteServiceImpl implements WorkshopDeleteService {
 	private final WorkshopRepository workshopRepository;
 
 	@Override
-	public void deleteWorkshop(Long workshopId) {
+	public void deleteWorkshopById(Long workshopId) {
 		try {
 			workshopRepository.deleteById(workshopId);
 		}

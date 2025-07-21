@@ -37,7 +37,7 @@ public class WorkshopController implements WorkshopsApiDelegate {
 
 	@Override
 	public ResponseEntity<Void> deleteWorkshop(Long workshopId) {
-		workshopDeleteService.deleteWorkshop(workshopId);
+		workshopDeleteService.deleteWorkshopById(workshopId);
 		return ResponseEntity.ok(null);
 	}
 

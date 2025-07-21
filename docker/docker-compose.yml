@@ -1,0 +1,76 @@
+services:
+  atelier-image-manager:
+    image: microservices/atelier-image-manager:0.0.1-SNAPSHOT
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      - MX=384m
+      - MS=384m
+      - META=256m
+      - SPRING_PROFILES_ACTIVE=local
+      - BBDD_HOST=postgres
+      - BBDD_PORT=5432
+      - BBDD_NAME=atelier
+      - BBDD_USER=
+      - BBDD_PASSWORD=
+      - AUTH_USERNAME=
+      - AUTH_PASSWORD=
+      - SECRET_KEY=
+      - UPLOAD_DIRECTORY:src/main/resources/static/images/
+      - IMAGE_BASE_URL:http://localhost:8080/images/
+      - STATIC_CLASSPATH_LOCATION:classpath:/static/
+      - STATIC_FILE_LOCATION:file:/static/images/
+    volumes:
+      - atelier_images:/app/static/images/
+    networks:
+      - postgres_network
+  authentication-microservice-jwt:
+    image: microservices/authentication-microservice-jwt:0.0.1-SNAPSHOT
+    mem_limit: 512m
+    ports:
+      - "8082:8082"
+    environment:
+      - MX=384m
+      - MS=384m
+      - META=256m
+      - SPRING_PROFILES_ACTIVE=local
+      - BBDD_HOST=postgres-products
+      - BBDD_PORT=5432
+      - BBDD_NAME=atelier
+      - BBDD_USER=
+      - BBDD_PASSWORD=
+      - AUTH_USERNAME=
+      - AUTH_PASSWORD=
+      - SECRET_KEY=
+    networks:
+      - postgres_network
+  atelier-workshops:
+    image: microservices/atelier-workshops:0.0.1-SNAPSHOT
+    mem_limit: 512m
+    ports:
+      - "8084:8084"
+    environment:
+      - MX=384m
+      - MS=384m
+      - META=256m
+      - SPRING_PROFILES_ACTIVE=local
+      - BBDD_HOST=postgres-products
+      - BBDD_PORT=5432
+      - BBDD_NAME=atelier
+      - BBDD_USER=
+      - BBDD_PASSWORD=
+      - AUTH_USERNAME=
+      - AUTH_PASSWORD=
+      - SECRET_KEY=
+    networks:
+      - postgres_network
+
+volumes:
+  atelier_images:
+    driver: local
+
+networks:
+  postgres_network:
+    external: true
+
