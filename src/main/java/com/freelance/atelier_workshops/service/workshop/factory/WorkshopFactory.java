@@ -9,7 +9,7 @@ public class WorkshopFactory {
 		// Empty constructor so there cant be instances of this class
 	}
 
-	public static Workshop buildProduct(WorkshopRequest workshopRequest) {
+	public static Workshop buildWorkshop(WorkshopRequest workshopRequest) {
 		return Workshop.builder().name(workshopRequest.getName()).build();
 	}
 

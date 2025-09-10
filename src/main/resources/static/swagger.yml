@@ -58,7 +58,7 @@ paths:
       description: Retrieve all workshops in a list format
       operationId: getWorkshops
       responses:
-        '201':
+        '200':
           description: Retrieved workshop list successfully
           content:
             application/json:

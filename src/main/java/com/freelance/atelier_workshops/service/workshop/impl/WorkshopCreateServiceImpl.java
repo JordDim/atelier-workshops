@@ -23,7 +23,7 @@ public class WorkshopCreateServiceImpl implements WorkshopCreateService {
 	@Override
 	public WorkshopResponse createWorkshop(WorkshopRequest workshopRequest) {
 		log.info("INIT - WorkshopCreateServiceImpl -> createWorkshop() - Saving workshop {}", workshopRequest);
-		Workshop workshop = workshopRepository.save(WorkshopFactory.buildProduct(workshopRequest));
+		Workshop workshop = workshopRepository.save(WorkshopFactory.buildWorkshop(workshopRequest));
 		log.info("END - WorkshopCreateServiceImpl -> createWorkshop() - Saved workshop {}", workshop);
 		return conversionService.convert(workshop, WorkshopResponse.class);
 	}
